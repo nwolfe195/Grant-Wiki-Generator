@@ -1,0 +1,22 @@
+h1. {{title}}
+
+{% for researcher,researcherLink in researchers_researcherLinks %}
+[[{{researcherLink}}|{{researcher}}]];
+{% endfor %}
+
+{% for word in abstract %}
+{%- if word|lower in terms -%}
+"{{word}}":https://chanmine2.bwh.harvard.edu/projects/cdnm-grants-portal/search?utf8=%E2%9C%93&wiki_pages=1&q={{word+" "}}
+{%- else -%}
+{{word+" "}}
+{%- endif %}
+{% endfor %}
+
+*Application ID:* {{applicationID}}
+*Award Date:* {{awardDate}}
+*Start Date:* {{startDate}}
+*End Date:* {{endDate}}
+
+*Project Terms:* {% for term,termLink in terms_termLink -%}
+	, "{{term}}":https://chanmine2.bwh.harvard.edu/projects/cdnm-grants-portal/search?utf8=%E2%9C%93&wiki_pages=1&q={{termLink}}
+{%- endfor %}
